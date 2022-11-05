@@ -347,7 +347,9 @@ enc.transform(df).toarray()
 
 ### `TargetEncoder` (1/2)
 
-For features with LOTS of categories, this can be a good option, like the zip code in the picture. 
+For features with LOTS of categories, this can be a good option, like the zipcode in the picture.
+
+`TargetEncoder` encodes the labels with the mean of the target for each value of the feature.
 
 <style>
   img[alt~="center"] {
@@ -362,4 +364,85 @@ For features with LOTS of categories, this can be a good option, like the zip co
 
 ### `TargetEncoder` (2/2)
 
+<br>
+
 ```python
+# initialize the encoder, specifying the column to encode
+te = TargetEncoder(cols="zipcode")
+
+# fit the encoder to the data
+te.fit(
+    X_train,
+    y_train
+)
+
+# transform the data
+te.transform(X_train)
+```
+
+---
+<!-- _footer: "Source: https://en.wikipedia.org/wiki/Skewness" -->
+### Skewness
+
+Skewness is a measure of the asymmetry of the probability distribution of a real-valued random variable about its mean.
+
+<style>
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+![center width:500px](../img/skew.png)
+
+Some algorithms *assume* that the data is normally distributed. If the data is not normally distributed, the algorithm will not work as expected.
+
+---
+
+### How to deal with skewness
+
+* Log transformation: $x_{log} = log(x)$
+* Square root transformation: $x_{sqrt} = \sqrt{x}$
+* Box-Cox transformation: $x_{boxcox} = \frac{x^{\lambda} - 1}{\lambda}$
+
+
+---
+
+### Dealing with skewness
+
+* Log transformation
+
+```python
+df["log_price"] = np.log(df["price"])
+```
+
+* Square root transformation
+
+```python
+df["sqrt_price"] = np.sqrt(df["price"])
+```
+
+* Box-Cox transformation
+
+```python
+from scipy import stats
+
+df["boxcox_price"] = stats.boxcox(df["price"])[0]
+```
+
+---
+
+### Reversing the transformation
+
+We need to reverse the transformation to get the original values after making predictions.
+
+```python
+# reversing log transformations
+df["price"] = np.exp(df["log_price"])
+
+# reversing square root transformations
+df["price"] = df["sqrt_price"] ** 2
+
+# reversing box-cox transformations
+df["price"] = stats.inv_boxcox(df["boxcox_price"], lmbda=0)
+```
