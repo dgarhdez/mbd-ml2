@@ -461,3 +461,10 @@ $$
 * PCA: the covariance matrix is diagonalized to find the principal components.
 
 ---
+
+### Take home points
+
+* Understaing the math behind machine learning algorithms is important to understand how they work and to be able to explain the behavior of the models.
+* A little bit of both Calculus and Linear Algebra goes a long way.
+
+---

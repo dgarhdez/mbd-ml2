@@ -294,3 +294,5 @@ And of course, GIGO (garbage in, garbage out).
 * More data is better than more complex models
 * Combine good data with expertise
 * Ensemble your models
+
+---
