@@ -47,6 +47,14 @@ This stage is crucial for the success of our model.
 
 --- 
 
+### Human biases and data
+
+We, as humans, have biases. We are not perfect, and since we are the ones who create the data, we are also the ones who introduce biases in it.
+
+We need to be aware of this and try to avoid it, in order to create meaningful and useful data for our ML models.
+
+---
+
 ### What can be done to clean our data?
 
 * Dealing with outliers
@@ -65,7 +73,7 @@ Outliers are data points that are distant from other observations.
 
 The presence of outliers is not wrong *per se* but it can affect the performance of our model.
 
-* Some models are sensitive to outliers
+* Some algorithms are more sensitive to outliers than others.
 * Outliers can be a sign of a problem in the data collection process
 
 We need to know what will be considered an outlier and whether to keep them or not.
@@ -229,12 +237,12 @@ Having different scales for our features can affect the performance of our model
 
 ### Effect of scaling on distance-based models
 
-Since the distance between the points is calculated using the Euclidean distance, the scale of the features will affect the distance.
+The scale of the features will affect the distance.
 <br>
 $$ d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} $$
 $$ x >> y \implies d \approx x $$
 <br>
-Examples of distance based algorithms: KNN, Linear Regression, Logistic Regression, SVM, etc.
+Examples of distance based algorithms: kNN, Linear Regression, Logistic Regression, SVM, etc.
 
 ---
 <!-- _footer: "Source: https://scikit-learn.org/stable/auto_examples/preprocessing/plot_all_scaling.html#sphx-glr-auto-examples-preprocessing-plot-all-scaling-py" -->
@@ -399,35 +407,33 @@ Some algorithms *assume* that the data is normally distributed. If the data is n
 
 ---
 
-### How to deal with skewness
-
-* Log transformation: $x_{log} = log(x)$
-* Square root transformation: $x_{sqrt} = \sqrt{x}$
-* Box-Cox transformation: $x_{boxcox} = \frac{x^{\lambda} - 1}{\lambda}$
-
-
----
-
 ### Dealing with skewness
 
-* Log transformation
+* Log transformation: $x_{log} = log(x)$
 
 ```python
 df["log_price"] = np.log(df["price"])
 ```
 
-* Square root transformation
+* Square root transformation: $x_{sqrt} = \sqrt{x}$
 
 ```python
 df["sqrt_price"] = np.sqrt(df["price"])
 ```
 
-* Box-Cox transformation
+* Box-Cox transformation:
+$$
+x_{BoxCox} =   \left\{
+\begin{array}{ll}
+      \frac{x^{\lambda} - 1}{\lambda} & \lambda \ne 0 \\
+      log(x) & \lambda = 0 \\
+\end{array}
+\right.
+$$
 
 ```python
 from scipy import stats
-
-df["boxcox_price"] = stats.boxcox(df["price"])[0]
+df["boxcox_price"], lmbda = stats.boxcox(df["price"])[0] 
 ```
 
 ---
@@ -444,5 +450,16 @@ df["price"] = np.exp(df["log_price"])
 df["price"] = df["sqrt_price"] ** 2
 
 # reversing box-cox transformations
-df["price"] = stats.inv_boxcox(df["boxcox_price"], lmbda=0)
+df["price"] = stats.inv_boxcox(df["boxcox_price"], lmbda)
 ```
+
+---
+
+### Take home points
+
+* Data cleaning is a mandatory, time-consuming, iterative process
+* Data cleaning represents a large part of ML projects
+* By understanding the data, we can make better decisions in the next steps
+* Document your data cleaning process so you can reproduce it later
+
+---

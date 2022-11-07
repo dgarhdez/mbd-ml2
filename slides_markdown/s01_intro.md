@@ -39,6 +39,30 @@ theme: default
 ![center width:530px](../img/learning.png)
 
 ---
+<!-- _footer: "Source: https://towardsdatascience.com/understanding-the-difference-between-ai-ml-and-dl-cceb63252a6c" -->
+### ML as a discipline
+
+ML uses statistical inference to give computers the ability to learn from data without being explicitly programmed to do so.
+
+It belongs to the broader family of Artificial Intelligence (AI). Deep Learning is a subfield of ML.
+
+<style>
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+![center width:450px](https://miro.medium.com/max/720/0*5NrDYk8PryKASFJD)
+
+---
+
+### AI, ML, DL and their differences
+
+* AI: Discipline that tries to develop intelligence and its processes using computers
+* ML: Discipline that uses statistical inference to give computers the ability to learn from data without being explicitly programmed
+* DL: Subfield of ML that uses deep neural networks to solve problems
+
+---
 
 ### Difference between ML and Classical Programming
 
