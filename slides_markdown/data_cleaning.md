@@ -8,11 +8,12 @@ header: "ML2 - Data Cleaning"
 size: 4:3
 footer: "Daniel Garcia, dgarciah@faculty.ie.edu"
 theme: default
+math: katex
 ---
 <!-- _class: invert -->
 # Machine Learning 2
 
-## Data Cleaning
+## 2. Data Cleaning
 
 ---
 <!-- paginate: true -->
@@ -26,14 +27,13 @@ theme: default
 
 ### The ML pipeline: rom raw data to deployed model
 
-* :question:
+* *Data collection (Data engineering, analytics engineering)*
 * **Data cleaning** :hand: 
-* Data exploration
 * Feature engineering
 * Model selection
 * Model training
 * Model evaluation
-* Model deployment
+* *Model deployment*
 
 ---
 

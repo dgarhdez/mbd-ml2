@@ -9,11 +9,12 @@ header: "ML2 - Intro to ML"
 size: 4:3
 footer: "Daniel Garcia, dgarciah@faculty.ie.edu"
 theme: default
+math: katex
 ---
 <!-- _class: invert -->
 # Machine Learning 2
 
-## Intro to ML
+## 1. Intro to ML
 
 ---
 <!-- paginate: true -->
@@ -93,10 +94,23 @@ Good ML systems = Good coding + Good data + Good domain knowledge + Ethics
 
 ---
 
+### Types of Learning in ML
+
+:mag: **Supervised Learning**: analyzing and extracting patterns from labeled data.
+
+* Continous target: Regression
+* Categorical target: Classification
+
+:grapes: Unsupervised Learning: analyzing and extracting patterns from unlabeled data.
+
+:robot: Reinforcement Learning: learning by interacting with the environment and receiving rewards when the performance is good.
+
+---
+
 ### Learning = Representation + Evaluation + Optimization
 
 
-* Representation: choosing a set of estimators (e.g. linear regression, decision trees, neural networks, etc.)
+* Representation: choosing a set of estimators (e.g. linear regression, decision trees, neural networks, etc.) to model the data.
 * Evaluation: how to distinguish good from bad estimators
 * Optimization: making sure the estimator is learning and improving the evaluation metric
 
@@ -107,19 +121,6 @@ Good ML systems = Good coding + Good data + Good domain knowledge + Ethics
 * Representation: linear regression, decision trees, SVM, neural networks, etc.
 * Evaluation: RMSE, MAE, MAPE, accuracy, precision, recall, F1, AUC, etc.
 * Optimization: least squares, gradient descent, etc.
-
----
-<!-- _class: lead -->
-### Representation
-
----
-
-### Evaluation
-
----
-
-<!-- class: lead -->
-### Optimization
 
 ---
 
@@ -270,6 +271,18 @@ And of course, GIGO (garbage in, garbage out).
 * It's not enough to learn one model, you need to learn many models and compare them.
 * No model is the best for all problems
 * In general, a combination of models is better than a single model (ensemble methods)
+
+---
+
+### The ML pipeline: rom raw data to deployed model
+
+* *Data collection (Data engineering, analytics engineering)*
+* Data cleaning
+* Feature engineering
+* Model selection
+* Model training
+* Model evaluation
+* *Model deployment*
 
 ---
 
