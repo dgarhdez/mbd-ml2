@@ -82,9 +82,9 @@ Breaking down the formula, we can see that the MSE is the average of the squared
 </style>
 ![center width:550px](../img/eval.png)
 
---- 
+---
 
-### Optimization 
+### Optimization
 
 We have a representation, an evaluation metric, and now we need to optimize the model to improve the evaluation metric:
 
@@ -92,9 +92,9 @@ We have a representation, an evaluation metric, and now we need to optimize the 
 
 There are many ways to do that, but we will use the Gradient Descent algorithm. The underlying idea is to update the parameters ($m$ and $n$) in the direction in which the MSE decreases the most.
 
-
 ---
-
+<!-- _footer: "More on GD: https://towardsdatascience.com/understanding-the-mathematics-behind-gradient-descent-dde5dc9be06e
+" -->
 ### Gradient Descent (1)
 
 In the most basic form, we can see that the MSE looks like a parabola. In order to minimize MSE, we need the set of parameters that take us to the bottom of the parabola.
@@ -105,7 +105,7 @@ In the most basic form, we can see that the MSE looks like a parabola. In order 
     margin: 0 auto;
   }
 </style>
-![center width:550px](../img/parabola.png)  
+![center width:550px](../img/parabola.png) 
 
 ---
 
@@ -146,11 +146,12 @@ The choice of our LR is very important:
 
 Now we know the parameters that will make my representation achieve a good evaluation, via optimization.
 
-Now we have a trained model, and it's on us to make sure that it will generalize well when facing unseen data, to avoid overfitting.
+We have a trained model, and it's on us to make sure that it will generalize well when facing unseen data, to avoid overfitting.
 
-* Overfitting happens when the error is super minimized in the training data, but when checking the real life data it's not so minimized.
+* Overfitting happens when the error is super minimized in the training data, but when checking the error in real life's data it's not so minimized.
 * Underfitting happens when the error is not minimized in the training data
 
 ---
 
-### Linear Algebra.
+### Linear Algebra
+
