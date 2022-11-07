@@ -15,6 +15,9 @@ math: katex
 
 ## Basic mathematics for Machine Learning
 
+* Calculus
+* Linear Algebra
+
 ---
 <!-- paginate: true -->
 ### Relation between ML and mathematics
@@ -23,7 +26,13 @@ ML mixes mathematics, statistics, and computer science to solve problems.
 
 Without at least a basic understanding of mathematics, it is difficult to understand ML.
 
-We will cover the basic mathematics needed: Linear Algebra and Calculus.
+We will cover the basic mathematics needed: Calculus and Linear Algebra.
+
+---
+
+## Calculus
+
+* Basic concepts for Gradient Descent
 
 ---
 <!-- _footer: "Source: Intro to ML (Slides)" -->
@@ -89,6 +98,8 @@ Breaking down the formula, we can see that the MSE is the average of the squared
 We have a representation, an evaluation metric, and now we need to optimize the model to improve the evaluation metric:
 
 * We can do that by changing $m$ and $n$ to minimize the MSE.
+$$ (\downarrow MSE) = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\updownarrow m)x_i - (\updownarrow n))^2 $$
+
 
 There are many ways to do that, but we will use the Gradient Descent algorithm. The underlying idea is to update the parameters ($m$ and $n$) in the direction in which the MSE decreases the most.
 
@@ -142,16 +153,311 @@ The choice of our LR is very important:
 
 ---
 
+### Gradient Descent (4)
+
+* This technique will find **a local minimum**, not necessarily the **global minimum** (think of an egg carton)
+* In general, the implementations of GD will stop after a certain number of iterations (epochs) or when the MSE stops improving.
+* There are other optimization approaches like Stochastic Gradient Descent (SGD) or Adam
+
+---
+
 ### After optimizing
 
-Now we know the parameters that will make my representation achieve a good evaluation, via optimization.
+We will know the parameters that will make my representation achieve a good evaluation, via optimization.
 
-We have a trained model, and it's on us to make sure that it will generalize well when facing unseen data, to avoid overfitting.
+At this point we will have a trained model, and it's on us to make sure that it will generalize well when facing unseen data, to avoid overfitting.
 
 * Overfitting happens when the error is super minimized in the training data, but when checking the error in real life's data it's not so minimized.
 * Underfitting happens when the error is not minimized in the training data
 
 ---
 
-### Linear Algebra
+## Linear Algebra
 
+* Vectors
+* Vector operations
+* Matrices
+* Matrix multiplication
+* Inverse, transpose of a Matrix
+* Matrix diagonalization
+
+---
+
+### Vectors
+
+A vector is a list of numbers. We can represent it as a column or a row.
+
+* The numbers are called components of the vector
+$$ \text{1 components: }\begin{bmatrix} u_1 \end{bmatrix} $$
+$$ \text{2 components: }\begin{bmatrix} u_1 \\ u_2 \end{bmatrix} $$
+$$ \text{3 components: }\begin{bmatrix} u_1 \\ u_2 \\ u_3 \end{bmatrix} $$
+
+---
+
+### Addition and scalar multiplication
+
+We can add and subtract vectors. The result is a vector.
+
+$$ 
+\vec u \pm  \vec v = \begin{bmatrix} u_1 \\ u_2 \\ u_3 \end{bmatrix} \pm \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} u_1 \pm v_1 \\ u_2 \pm v_2 \\ u_3 \pm v_3 \end{bmatrix} 
+$$
+
+We can also multiply a vector by a scalar (a number).
+
+$$
+\alpha\vec u = \alpha \cdot \begin{bmatrix} u_1 \\ u_2 \\ u_3 \end{bmatrix} = \begin{bmatrix} \alpha u_1 \\ \alpha u_2 \\ \alpha u_3 \end{bmatrix}
+$$
+
+---
+
+### Modulo of a vector, projection of vector onto vector
+
+Modulo of a vector: the square root of the sum of the squares of its components.
+
+$$
+\lVert \vec u \rVert = \sqrt{\sum{u_i^2}}
+$$
+
+Projection of a vector: casting a vector that forms and angle $\theta$ with another vector
+
+$$
+\vec u_v = \vec u \cdot cos(\theta)
+$$
+
+---
+
+### Dot product
+
+Dot product: the sum of the products of the components of the vectors.
+
+$$
+\vec u \cdot  \vec v = \begin{bmatrix} u_1 \\ u_2 \\ u_3 \end{bmatrix} \cdot \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = 
+\sum{u_i \cdot v_i } = u_1v_1 + u_2v_2 + u_3v_3
+$$
+
+From this relation, we can see that the dot product is a scalar.
+
+The relation between the dot product and the angle between two vectors is:
+
+$$
+cos \theta = \frac{ \vec u \cdot  \vec v}{\lVert \vec u \rVert \cdot \lVert \vec v \rVert}
+$$
+
+---
+
+### Visual representation of vector operations
+
+<style>
+  img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+![center width:800px](../img/vec_ops.png)
+
+---
+
+### Examples of vector operations in ML
+
+* In a Linear Regression, the representation of the data is a dot product of the parameters and the features of the data point.
+
+$$ \hat y_i = \vec w \cdot \vec x $$
+
+* In SVM, the parameter to maximize is the projection of the data point on the parameters vector
+
+* In PCA and LDA/QDA we are projecting the data points on the eigenvectors of the covariance matrix
+
+---
+
+### Matrices
+
+A matrix is a rectangular array of elements, with $n$ rows and $p$ columns. Each element of the matrix is now represented by a pair of indices: the row and the column.
+$$ A = \{a_{ij}\} $$
+
+$$
+\begin{bmatrix}
+    a_{1, 1} & ... & a_{1, p} \\
+    ... & ... & ... \\
+    a_{n, 1} & ... & a_{n, p} \\
+\end{bmatrix}
+$$
+
+The result of `df.values` is a matrix:
+
+* Each column represents a feature
+* Each row represents an observation
+
+---
+
+### Matrix operations
+
+We can operate with matrices in a similar way we operate with vectors.
+
+* Addition and subtraction
+* Multiplication by a scalar
+* Multiplication by a matrix
+* Inverse of a matrix
+* Transpose of a matrix
+* Diagonalization of a matrix
+
+---
+
+### Matrix addition, multiplication by a scalar
+
+Matrix addition and subtraction:
+$$
+\begin{bmatrix}
+    a_{1, 1} & ... & a_{1, p} \\
+    ... & ... & ... \\
+    a_{n, 1} & ... & a_{n, p} \\
+\end{bmatrix} +
+\begin{bmatrix}
+    b_{1, 1} & ... & b_{1, p} \\
+    ... & ... & ... \\
+    b_{n, 1} & ... & b_{n, p} \\
+\end{bmatrix} =
+\begin{bmatrix}
+    a_{1, 1}+b_{1, 1} & ... & a_{1, p}+b_{1, p} \\
+    ... & ... & ... \\
+    a_{n, 1}+b_{n, 1} & ... & a_{n, p}+b_{n, p} \\
+\end{bmatrix}
+$$
+
+Multiplication by a scalar:
+$$
+k \cdot
+\begin{bmatrix}
+    a_{1, 1} & ... & a_{1, p} \\
+    ... & ... & ... \\
+    a_{n, 1} & ... & a_{n, p} \\
+\end{bmatrix} =
+\begin{bmatrix}
+    k \cdot a_{1, 1} & ... & k \cdot a_{1, p} \\
+    ... & ... & ... \\
+    k \cdot a_{n, 1} & ... & k \cdot a_{n, p} \\
+\end{bmatrix}
+$$
+
+---
+
+### Multiplication of a matrix by a vector
+
+Multiplication of a matrix by a vector:
+
+$$
+\begin{bmatrix}
+    a_{1, 1} & ... & a_{1, p} \\
+    ... & ... & ... \\
+    a_{n, 1} & ... & a_{n, p} \\
+\end{bmatrix}
+\begin{bmatrix}
+    u_1 \\
+    ... \\
+    u_p \\
+\end{bmatrix} =
+\begin{bmatrix}
+    a_{1, 1}u_1 + ... + a_{1, p}u_p \\
+    ... \\
+    a_{n, 1}u_1 + ... + a_{n, p}u_p \\
+\end{bmatrix}
+$$
+
+---
+
+### Multiplication of two matrices
+
+Requirement: The number of columns of the first matrix must be equal to the number of rows of the second matrix
+
+Multiplication of two matrices: the final element ${i, j}$ is calculated as the dot product of the $i$-th row of the first matrix and the $j$-th column of the second matrix.
+
+$$ 
+\sum_{k=1}^p a_{i, k} \cdot b_{k, j}
+$$
+
+$$
+\begin{bmatrix}
+    a_{1, 1} & ... & a_{1, p} \\
+    ... & ... & ... \\
+    a_{n, 1} & ... & a_{n, p} \\
+\end{bmatrix}
+\begin{bmatrix}
+    b_{1, 1} & ... & b_{1, q} \\
+    ... & ... & ... \\
+    b_{p, 1} & ... & b_{p, q} \\
+\end{bmatrix} =
+\begin{bmatrix}
+    \sum_{k=1}^p a_{1, k} \cdot b_{k, 1} & ... & \sum_{k=1}^p a_{1, k} \cdot b_{k, q} \\
+    ... & ... & ... \\
+    \sum_{k=1}^p a_{n, k} \cdot b_{k, 1} & ... & \sum_{k=1}^p a_{n, k} \cdot b_{k, q} \\
+\end{bmatrix}
+$$
+
+---
+
+### Inverse of a matrix
+
+Inverse of a matrix: a matrix $A$ is invertible if there exists a matrix $A_{inv}$ such that $A \cdot A_{inv} = A_{inv} \cdot A = I$, where $I$ is the identity matrix.
+
+We can calculate the inverse of a matrix with:
+
+$$
+A_{inv} = adj(A) \cdot \frac{1}{det(A)}
+$$
+
+* $adj(A)$ is the adjugate matrix of $A$ and $det(A)$ is the determinant of $A$.
+
+
+```python
+# in python
+A_inv = np.linalg.inv(A)
+```
+
+---
+
+### Transpose of a matrix
+
+Transpose of a matrix: the transpose of a matrix $A$ is the matrix $A^T$ obtained by interchanging the rows and columns of $A$.
+
+$$
+\begin{bmatrix}
+    a_{1, 1} & ... & a_{1, p} \\
+    ... & ... & ... \\
+    a_{n, 1} & ... & a_{n, p} \\
+\end{bmatrix}^T =
+\begin{bmatrix}
+    a_{1, 1} & ... & a_{n, 1} \\
+    ... & ... & ... \\
+    a_{1, p} & ... & a_{n, p} \\
+\end{bmatrix}
+$$
+
+---
+
+### Diagonalization of a matrix
+
+Diagonal matrix: a aquare matrix with non-zero elements only on the diagonal
+
+$$ 
+D_{i,i} = \
+\begin{bmatrix}
+    d_{1, 1} & 0 & 0 \\
+    0 & d_{2, 2} & 0 \\
+    0 & 0 & d_{3, 3} \\
+\end{bmatrix}
+$$
+
+Diagonalization of a matrix: for every matrix $A$ there exists a matrix $P$ such that $P^{-1}AP$ is diagonal.
+
+
+---
+### Example of matrix operations
+
+* Feedforward Neural Networks: in each layer, the output of the previous layer ($X$) is multiplied by the weights matrix ($W$) and added to a biases vector ($b$). The result is the input of the next layer ($Z$).
+
+$$
+Z = X \cdot W + b
+$$
+
+* PCA: the covariance matrix is diagonalized to find the principal components.
+
+---
