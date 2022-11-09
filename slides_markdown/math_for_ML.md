@@ -10,7 +10,8 @@ footer: "Daniel Garcia, dgarciah@faculty.ie.edu"
 theme: default
 math: katex
 ---
-<!-- _class: invert -->
+<!-- _color: "rgb(31,56,94)" -->
+<!-- _header: ![center width:150px](../img/ie_logo.png) -->
 # Machine Learning 2
 
 ## Basic mathematics for Machine Learning
@@ -53,12 +54,7 @@ $$ \^{y} = mx + n $$
 
 where $m$ is the slope and $n$ the intercept.
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:700px](../img/rep.png)
 
 ---
@@ -80,12 +76,7 @@ where $n$ is the number of samples, $y_i$ is the true value and $\^{y}_i$ is the
 
 Breaking down the formula, we can see that the MSE is the average of the squared differences between the true value ($y_i$) and the predicted value ($\^{y}_i$).
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:550px](../img/eval.png)
 
 ---
@@ -107,12 +98,7 @@ There are many ways to do that, but we will use the Gradient Descent algorithm. 
 
 In the most basic form, we can see that the MSE looks like a parabola. In order to minimize MSE, we need the set of parameters that take us to the bottom of the parabola.
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:550px](../img/parabola.png) 
 
 ---
@@ -123,12 +109,7 @@ To achieve this, we can take steps across the parabola, and after each step we c
 
 We can control the direction and the length of the step. The length of the step is called Learning Rate (LR).
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:550px](../img/step_dir.png)  
 
 ---
@@ -140,12 +121,7 @@ The choice of our LR is very important:
 * If it's too small, it's gonna take forever to minimize (good performance, computationally expensive)
 * If it's too big it will jump around never finding the minimum (poor performance, computationally cheap)
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:550px](../img/lr.png)
 
 ---
@@ -183,9 +159,9 @@ At this point we will have a trained model, and it's on us to make sure that it 
 
 ### Vectors
 
-*In physics and engineering, a vector is typically regarded as a geometric entity characterized by a magnitude and a direction*
+:gear: a vector is typically regarded as a geometric entity characterized by a magnitude and a direction
 
-*A vector is a list of numbers. We can represent it as a column or a row*
+:computer: Data structure consisting of a collection of elements
 
 * The numbers are called components of the vector
 $$ \text{1 components: }\begin{pmatrix} u_1 \end{pmatrix} $$
@@ -247,12 +223,7 @@ $$
 
 ### Visual representation of vector operations
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:800px](../img/vec_ops.png)
 
 ---

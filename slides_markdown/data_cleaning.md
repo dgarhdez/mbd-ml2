@@ -10,7 +10,8 @@ footer: "Daniel Garcia, dgarciah@faculty.ie.edu"
 theme: default
 math: katex
 ---
-<!-- _class: invert -->
+<!-- _color: "rgb(31,56,94)" -->
+<!-- _header: ![center width:150px](../img/ie_logo.png) -->
 # Machine Learning 2
 
 ## 2. Data Cleaning
@@ -84,12 +85,7 @@ We need to know what will be considered an outlier and whether to keep them or n
 
 Outliers can make our model prone to learning from extreme behaviors
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:700px](../img/effect_outliers.png)
 
 ---
@@ -129,12 +125,7 @@ We can use this IQR to define a threshold after which we consider an observation
 <!-- _footer: "Source: https://ca.wikipedia.org/wiki/Amplitud_interquart%C3%ADlica" -->
 ### Visualizing Z-Score and IQR
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:670px](../img/z_iqr.png)
 
 ---
@@ -191,12 +182,7 @@ In `pandas`, these values are represented as `NaN` (Not a Number) or `NaT` (Not 
 * **Missing at random (MAR)**: The probability of being missing is the same only within groups defined by the observed data
 * **Missing not at random (MNAR)**: The probability of being missing varies.
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 
 ![center width:600px](https://hushuli.github.io/Metabox-Blog.github.io/posts/2018-11-08-missing-value/fig1.jpg
 )
@@ -224,12 +210,7 @@ Having different scales for our features can affect the performance of our model
 * Feature 1: -1 - 6
 * Feature 2: 8k - 12k
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 
 ![center width:500px](../img/effect_scale.png)
 
@@ -299,12 +280,7 @@ Some algorithms can deal with categorical variables:
 
 ### Dataset to encode
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 
 ![center width:500px](../img/orig_df.png)
 
@@ -316,12 +292,7 @@ Some algorithms can deal with categorical variables:
 df["boro_ordinal"] = OrdinalEncoder().fit_transform(df[["boro"]])
 ```
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 
 ![center width:900px](../img/ordinal.png)
 
@@ -342,12 +313,7 @@ enc = ohe.fit(df)
 enc.transform(df).toarray()
 ```
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 
 ![center width:600px](../img/ohe.png)
 
@@ -359,12 +325,7 @@ For features with LOTS of categories, this can be a good option, like the zipcod
 
 `TargetEncoder` encodes the labels with the mean of the target for each value of the feature.
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 
 ![center width:900px](../img/zip.png)
 
@@ -394,12 +355,7 @@ te.transform(X_train)
 
 Skewness is a measure of the asymmetry of the probability distribution of a real-valued random variable about its mean.
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 
 ![center width:500px](../img/skew.png)
 

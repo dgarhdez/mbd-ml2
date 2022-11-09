@@ -5,16 +5,22 @@ author:
   - name: Daniel Garcia
   - email: dgarciah@faculty.ie.edu
   - url: www.linkedin.com/in/dgarhdez
-header: "ML2 - Intro to ML"
 size: 4:3
 footer: "Daniel Garcia, dgarciah@faculty.ie.edu"
+header: "ML2 - Intro to Machine Learning"
 theme: default
 math: katex
+style: |
+    img[alt~="center"] {
+      display: block;
+      margin: 0 auto;
+    }
 ---
-<!-- _class: invert -->
+<!-- _color: "rgb(31,56,94)" -->
+<!-- _header: ![center width:150px](../img/ie_logo.png) -->
 # Machine Learning 2
 
-## 1. Intro to ML
+## 1. Intro to Machine Learning
 
 ---
 <!-- paginate: true -->
@@ -31,12 +37,6 @@ math: katex
 *A computer program learns from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.*
 :man: Tom Mitchell, 1997
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
 ![center width:530px](../img/learning.png)
 
 ---
@@ -47,12 +47,6 @@ ML uses statistical inference to give computers the ability to learn from data w
 
 It belongs to the broader family of Artificial Intelligence (AI). Deep Learning is a subfield of ML.
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
 ![center width:450px](https://miro.medium.com/max/720/0*5NrDYk8PryKASFJD)
 
 ---
@@ -70,12 +64,6 @@ It belongs to the broader family of Artificial Intelligence (AI). Deep Learning 
 * Classical Programming: we provide the rules and data and receive the output
 * Machine Learning: we provide the data and desired output and receive the rules
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
 ![center width:450px](../img/ml_vs_cp.png)
 
 ---
@@ -84,12 +72,7 @@ It belongs to the broader family of Artificial Intelligence (AI). Deep Learning 
 
 Good ML systems = Good coding + Good data + Good domain knowledge + Ethics
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:400px](../img/venn_ml.png)
 
 ---
@@ -160,12 +143,6 @@ The usual causes for an underperforming ML model.
 
 ### Underfitting and Overfitting (3/3)
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
 ![center width:900px](../img/over_under.png)
 
 ---
@@ -202,7 +179,7 @@ Throwing more data at a complex model, in general, will not help if the model is
 
 * Many algorithms that work just fine in low dimensions (few features) become useless when the number of features is very high.
 
-* There's an effect called "blessing of non-uniformity" that partly compensated de CoD.
+* There's an effect called "blessing of non-uniformity" that partly compensated the CoD.
   * Since the data is sparce, sometimes the data is concentrated in certain regions of the feature space and therefore we can get good results with a small amount of data.
 
 ---
@@ -225,12 +202,6 @@ In general, having more and better data is better than having a more complex mod
 
 This process is iterative:
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
 ![center width:970px](../img/iter.png)
 
 ---
@@ -241,13 +212,7 @@ This process is iterative:
 
 :scroll: Banko and Brill, 2001
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-![center width:500px](../img/more_data.png)
+![center width:450px](../img/more_data.png)
 
 ---
 

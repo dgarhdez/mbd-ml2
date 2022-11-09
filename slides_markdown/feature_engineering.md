@@ -10,7 +10,8 @@ footer: "Daniel Garcia, dgarciah@faculty.ie.edu"
 theme: default
 math: katex
 ---
-<!-- _class: invert -->
+<!-- _color: "rgb(31,56,94)" -->
+<!-- _header: ![center width:150px](../img/ie_logo.png) -->
 # Machine Learning 2
 
 ## 3. Feature Engineering
@@ -68,12 +69,7 @@ FE allows to create simpler models and more flexible
 
 <br>
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:1100px](../img/fe_flow.png)
 
 ---
@@ -147,12 +143,7 @@ Correlation is a statistical measure that indicates the extent to which two or m
 
 $$ \rho_{x, y} = \frac{cov(x, y)}{\sigma_{x}\sigma_{y}} = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2 \sum_{i=1}^{n} (y_i - \bar{y})^2}} $$
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+
 ![center width:600px](https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Correlation_coefficient.png/400px-Correlation_coefficient.png)
 
 ---
