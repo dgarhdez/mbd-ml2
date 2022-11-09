@@ -15,9 +15,6 @@ math: katex
 
 ## Basic mathematics for Machine Learning
 
-* Calculus
-* Linear Algebra
-
 ---
 <!-- paginate: true -->
 ### Relation between ML and mathematics
@@ -32,7 +29,7 @@ We will cover the basic mathematics needed: Calculus and Linear Algebra.
 
 ## Calculus
 
-* Basic concepts for Gradient Descent
+* Understanding Gradient Descent
 
 ---
 <!-- _footer: "Source: Intro to ML (Slides)" -->
@@ -155,7 +152,8 @@ The choice of our LR is very important:
 
 ### Gradient Descent (4)
 
-* This technique will find **a local minimum**, not necessarily the **global minimum** (think of an egg carton)
+* After every step it'll check if the gradient has decreased, until reaching a minimum.
+  * This technique will find **a local minimum**, not necessarily the **global minimum** (think of an egg carton)
 * In general, the implementations of GD will stop after a certain number of iterations (epochs) or when the MSE stops improving.
 * There are other optimization approaches like Stochastic Gradient Descent (SGD) or Adam
 
@@ -163,9 +161,9 @@ The choice of our LR is very important:
 
 ### After optimizing
 
-We will know the parameters that will make my representation achieve a good evaluation, via optimization.
+We will know the parameters that will make the representation achieve a good evaluation, via optimization.
 
-At this point we will have a trained model, and it's on us to make sure that it will generalize well when facing unseen data, to avoid overfitting.
+At this point we will have a trained model, and it's on us to make sure that it will generalize well when facing unseen data, to avoid poor performance:
 
 * Overfitting happens when the error is super minimized in the training data, but when checking the error in real life's data it's not so minimized.
 * Underfitting happens when the error is not minimized in the training data
@@ -185,12 +183,14 @@ At this point we will have a trained model, and it's on us to make sure that it 
 
 ### Vectors
 
-A vector is a list of numbers. We can represent it as a column or a row.
+*In physics and engineering, a vector is typically regarded as a geometric entity characterized by a magnitude and a direction*
+
+*A vector is a list of numbers. We can represent it as a column or a row*
 
 * The numbers are called components of the vector
-$$ \text{1 components: }\begin{bmatrix} u_1 \end{bmatrix} $$
-$$ \text{2 components: }\begin{bmatrix} u_1 \\ u_2 \end{bmatrix} $$
-$$ \text{3 components: }\begin{bmatrix} u_1 \\ u_2 \\ u_3 \end{bmatrix} $$
+$$ \text{1 components: }\begin{pmatrix} u_1 \end{pmatrix} $$
+$$ \text{2 components: } (u_1, u_2)$$
+$$ \text{n components: } (u_1, u_2, ..., u_n)$$
 
 ---
 
@@ -450,12 +450,13 @@ Diagonalization of a matrix: for every matrix $A$ there exists a matrix $P$ such
 
 
 ---
-### Example of matrix operations
 
-* Feedforward Neural Networks: in each layer, the output of the previous layer ($X$) is multiplied by the weights matrix ($W$) and added to a biases vector ($b$). The result is the input of the next layer ($Z$).
+### Example of matrix operations in ML
+
+* Feedforward Neural Networks: in each layer, the output of the previous layer ($\vec X$) is multiplied by the weights matrix ($W$) and added to a biases vector ($\vec b$). The result is passed to the activation function $f$ as the input of the next layer ($\vec Z$).
 
 $$
-Z = X \cdot W + b
+Z = f(W^T X  + b)
 $$
 
 * PCA: the covariance matrix is diagonalized to find the principal components.

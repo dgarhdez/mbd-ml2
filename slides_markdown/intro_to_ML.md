@@ -234,12 +234,12 @@ This process is iterative:
 ![center width:970px](../img/iter.png)
 
 ---
-
+<!-- _footer: "Source: https://aclanthology.org/P01-1005/" -->
 ### More data is better than more complex models
 
 *It's not who has the best model, it's who has the most data.*
 
-:man: Banko and Brill, 2001
+:scroll: Banko and Brill, 2001
 
 <style>
   img[alt~="center"] {
@@ -253,14 +253,13 @@ This process is iterative:
 
 ### But data alone is not enough
 
-Data is not enough, you need to know how to use it.
+You need to know how to use it.
 
 * You can have the best data in the world, but if you don't know how to use it, you won't get good results.
 
 It's the practice and domain knowledge that makes the difference.
 
 * It's not the same approach to predict prices of stocks than to classify images.
-
 
 And of course, GIGO (garbage in, garbage out).
 
