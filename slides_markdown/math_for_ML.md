@@ -35,7 +35,9 @@ We will cover the basic mathematics needed: Calculus and Linear Algebra.
 
 ## Calculus
 
+* Breaking down the learning process
 * Understanding Gradient Descent
+* Understanding Regularization
 
 ---
 <!-- _footer: "Source: Intro to ML (Slides)" -->
@@ -97,7 +99,7 @@ There are many ways to do that, but we will use the Gradient Descent algorithm. 
 
 ---
 
-## Application of Calculus I: Gradient Descent
+## Understanding Gradient Descent
 
 <!-- _footer: "More on GD: https://towardsdatascience.com/understanding-the-mathematics-behind-gradient-descent-dde5dc9be06e
 " -->
@@ -115,7 +117,7 @@ In the most basic form, we can see that the MSE looks like a parabola. In order 
 
 ### Gradient Descent (2)
 
-To achieve this, we can take steps across the parabola, and after each step we can check how far from the bottom we are. 
+To achieve this, we can take steps across the parabola, and after each step we can check if the gradient has decreased (the slope of the parabola).
 
 We can control the direction and the length of the step. The length of the step is called Learning Rate (LR).
 
@@ -128,7 +130,7 @@ We can control the direction and the length of the step. The length of the step 
 The choice of our LR is very important:
 
 * If it's too small, it's gonna take forever to minimize (good performance, computationally expensive)
-* If it's too big it will jump around never finding the minimum (poor performance, computationally cheap)
+* If it's too big it will jump around and might never find the minimum (poor performance, computationally cheap)
 
 ![center width:550px](../img/lr.png)
 
@@ -137,7 +139,7 @@ The choice of our LR is very important:
 ### Gradient Descent (4)
 
 * After every step it'll check if the gradient has decreased, until reaching a minimum.
-  * This technique will find **a local minimum**, not necessarily the **global minimum** (think of an egg carton)
+  * This technique will find **a local minimum**, not necessarily the **global minimum** (think of an egg box)
 * In general, the implementations of GD will stop after a certain number of iterations (epochs) or when the MSE stops improving.
 * There are other optimization approaches like Stochastic Gradient Descent (SGD) or Adam
 
@@ -154,7 +156,7 @@ At this point we will have a trained model, and it's on us to make sure that it 
 
 ---
 
-## Application of Calculus II: Regularization
+## Understanding Regularization
 
 ---
 
@@ -163,7 +165,7 @@ At this point we will have a trained model, and it's on us to make sure that it 
 * Regularization is a technique used to avoid overfitting by penalizing the loss function (MSE in our examples) and reduce the complexity of the model.
 * There are two main types of regularization: L1 and L2
   * Both are used to reduce the magnitude of the coefficients ($\beta_j$) from the linear regression model:
-$$ \^{y} = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_px_p $$
+$$ \^{y} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p $$
 * This approach is also used to perform feature selection, in an embedded way at the training stage.
 
 ---
@@ -210,6 +212,16 @@ $$ L1 = \frac{1}{n} \sum_{i=1}^{n} (y_i - \^{y}_i)^2 + \lambda \sum_{j=1}^{p} |\
 
 ---
 
+### Lasso regression example
+
+As $\lambda$ increases the coefficients for the different features are reduced and even some of them are set to 0.
+
+![center width:430px](../img/lambda_lasso.png)
+
+<!-- _footer: "Source: https://www.statlearning.com/" -->
+
+---
+
 ### Ridge vs Lasso (1)
 
 * Lasso can shrink the less important feature’s coefficient to exactly 0, while Ridge will not.
@@ -222,7 +234,8 @@ $$ L1 = \frac{1}{n} \sum_{i=1}^{n} (y_i - \^{y}_i)^2 + \lambda \sum_{j=1}^{p} |\
 
 ### Ridge vs Lasso (2)
 
-* Lasso performs better in a setting where a relatively small number of features have substantial coefficients, and the remaining features have coefficients that are very small or that equal zero
+* Lasso tends to perform better in a setting where a relatively small number of features have substantial coefficients, and the remaining features have coefficients that are very small or that equal zero
+
 * Ridge regression will perform better when the target is a function of many features, all with coefficients of roughly equal size
 
 ---
@@ -240,11 +253,11 @@ $$ L1 = \frac{1}{n} \sum_{i=1}^{n} (y_i - \^{y}_i)^2 + \lambda \sum_{j=1}^{p} |\
 
 ### Vectors
 
-:gear: a vector is typically regarded as a geometric entity characterized by a magnitude and a direction
+A vector is typically regarded as a geometric entity characterized by a magnitude and a direction
 
-:computer: Data structure consisting of a collection of elements
+In Computer Science it's a data structure consisting of a collection of elements
 
-* The numbers are called components of the vector
+* The positions in which we place the elements are called components of the vector
 $$ \text{1 components: }\begin{pmatrix} u_1 \end{pmatrix} $$
 $$ \text{2 components: } (u_1, u_2)$$
 $$ \text{n components: } (u_1, u_2, ..., u_n)$$
@@ -313,7 +326,7 @@ $$
 
 * In a Linear Regression, the representation of the data is a dot product of the parameters and the features of the data point.
 
-$$ \hat y_i = \vec w \cdot \vec x $$
+$$ \hat y_i = \vec \beta \cdot \vec x + \beta_0$$
 
 * In SVM, the parameter to maximize is the projection of the data point on the parameters vector
 
@@ -334,10 +347,10 @@ $$
 \end{bmatrix}
 $$
 
-The result of `df.values` is a matrix:
+In `pandas` the result of `df.values` is a matrix:
 
-* Each column represents a feature
-* Each row represents an observation
+* Each column represents a feature ($p$ features)
+* Each row represents an observation ($n$ observations)
 
 ---
 
@@ -505,10 +518,10 @@ Diagonalization of a matrix: for every matrix $A$ there exists a matrix $P$ such
 
 ### Example of matrix operations in ML
 
-* Feedforward Neural Networks: in each layer, the output of the previous layer ($\vec X$) is multiplied by the weights matrix ($W$) and added to a biases vector ($\vec b$). The result is passed to the activation function $f$ as the input of the next layer ($\vec Z$).
+* Feedforward Neural Networks: in each layer, the output of the previous layer ($X$) is multiplied by the weights ($W$) and added to the biases ($b$). The result is passed to the activation function $f$ as the input of the next layer ($Y$).
 
 $$
-Z = f(W^T X  + b)
+Y = f(W^T X  + b)
 $$
 
 * PCA: the covariance matrix is diagonalized to find the principal components.
