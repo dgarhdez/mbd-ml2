@@ -130,7 +130,7 @@ We can control the direction and the length of the step. The length of the step 
 The choice of our LR is very important:
 
 * If it's too small, it's gonna take forever to minimize (good performance, computationally expensive)
-* If it's too big it will jump around and might never find the minimum (poor performance, computationally cheap)
+* If it's too big it will jump around and might never find the minimum (poor performance, computationally expensive due to never converging)
 
 ![center width:550px](../img/lr.png)
 
