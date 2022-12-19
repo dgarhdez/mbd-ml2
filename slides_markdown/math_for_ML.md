@@ -9,6 +9,11 @@ size: 4:3
 footer: "Daniel Garcia, dgarciah@faculty.ie.edu"
 theme: default
 math: katex
+style: |
+    img[alt~="center"] {
+      display: block;
+      margin: 0 auto;
+    }
 ---
 <!-- _color: "rgb(31,56,94)" -->
 <!-- _header: ![center width:150px](../img/ie_logo.png) -->
@@ -76,7 +81,6 @@ where $n$ is the number of samples, $y_i$ is the true value and $\^{y}_i$ is the
 
 Breaking down the formula, we can see that the MSE is the average of the squared differences between the true value ($y_i$) and the predicted value ($\^{y}_i$).
 
-
 ![center width:550px](../img/eval.png)
 
 ---
@@ -92,8 +96,14 @@ $$ (\downarrow MSE) = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\updownarrow m)x_i - (\
 There are many ways to do that, but we will use the Gradient Descent algorithm. The underlying idea is to update the parameters ($m$ and $n$) in the direction in which the MSE decreases the most.
 
 ---
+
+## Application of Calculus I: Gradient Descent
+
 <!-- _footer: "More on GD: https://towardsdatascience.com/understanding-the-mathematics-behind-gradient-descent-dde5dc9be06e
 " -->
+
+---
+
 ### Gradient Descent (1)
 
 In the most basic form, we can see that the MSE looks like a parabola. In order to minimize MSE, we need the set of parameters that take us to the bottom of the parabola.
@@ -109,7 +119,6 @@ To achieve this, we can take steps across the parabola, and after each step we c
 
 We can control the direction and the length of the step. The length of the step is called Learning Rate (LR).
 
-
 ![center width:550px](../img/step_dir.png)  
 
 ---
@@ -120,7 +129,6 @@ The choice of our LR is very important:
 
 * If it's too small, it's gonna take forever to minimize (good performance, computationally expensive)
 * If it's too big it will jump around never finding the minimum (poor performance, computationally cheap)
-
 
 ![center width:550px](../img/lr.png)
 
@@ -143,6 +151,79 @@ At this point we will have a trained model, and it's on us to make sure that it 
 
 * Overfitting happens when the error is super minimized in the training data, but when checking the error in real life's data it's not so minimized.
 * Underfitting happens when the error is not minimized in the training data
+
+---
+
+## Application of Calculus II: Regularization
+
+---
+
+### What is regularization
+
+* Regularization is a technique used to avoid overfitting by penalizing the loss function (MSE in our examples) and reduce the complexity of the model.
+* There are two main types of regularization: L1 and L2
+  * Both are used to reduce the magnitude of the coefficients ($\beta_j$) from the linear regression model:
+$$ \^{y} = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_px_p $$
+* This approach is also used to perform feature selection, in an embedded way at the training stage.
+
+---
+
+### L2 regularization - Ridge Regression
+
+* L2 regularization adds a penalty term to the loss function that is proportional to the square of the magnitude of coefficients.
+
+$$ L2 = \frac{1}{n} \sum_{i=1}^{n} (y_i - \^{y}_i)^2 + \lambda \sum_{j=1}^{p} \beta_j^2 $$
+
+* The $\lambda$ (lambda) hyperparameter controls the amount of regularization to apply.
+$$ \lambda = 0 \rightarrow \text{no regularization} $$
+$$ \lambda = \infty \rightarrow \text{all coefficients are 0} $$
+
+---
+
+### Ridge vs. linear regression
+
+* It reduces the variance (black) of the model, while increasing the bias (green) of the model, but it's a good trade-off in the sweet spot, reducing the overall MSE (red)
+
+![center width:450px](../img/bias_variance_ridge.png)
+
+<!-- _footer: "Source: https://www.statlearning.com/" -->
+
+---
+
+### Ridge regression example
+
+As $\lambda$ increases the coefficients for the different features are reduced, but not all the way to 0.
+
+![center width:430px](../img/lambda_ridge.png)
+
+<!-- _footer: "Source: https://www.statlearning.com/" -->
+
+---
+
+### L1 regularization - Lasso Regression
+
+* L1 regularization adds a penalty term to the loss function that is proportional to the absolute value of the magnitude of coefficients.
+
+$$ L1 = \frac{1}{n} \sum_{i=1}^{n} (y_i - \^{y}_i)^2 + \lambda \sum_{j=1}^{p} |\beta_j| $$
+
+* The $\lambda$ (lambda) hyperparameter controls the amount of regularization to apply.
+
+---
+
+### Ridge vs Lasso (1)
+
+* Lasso can shrink the less important feature’s coefficient to exactly 0, while Ridge will not.
+
+* Lasso is more robust to outliers than Ridge, because it shrinks the coefficients of the outliers less than Ridge does.
+
+* Ridge is more robust to collinearity than Lasso, because it shrinks the coefficients of the collinear features at the same time and proportionally, whereas Lasso tends to select one of the collinear features and give all the weight to it.
+
+---
+
+### Ridge vs Lasso (2)
+
+* Lasso performs better in a setting where a relatively small number of features have substantial coefficients, and the remaining features have coefficients that are very small or that equal zero
+* Ridge regression will perform better when the target is a function of many features, all with coefficients of roughly equal size
 
 ---
 

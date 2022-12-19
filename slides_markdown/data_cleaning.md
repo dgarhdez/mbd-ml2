@@ -9,6 +9,11 @@ size: 4:3
 footer: "Daniel Garcia, dgarciah@faculty.ie.edu"
 theme: default
 math: katex
+style: |
+    img[alt~="center"] {
+      display: block;
+      margin: 0 auto;
+    }
 ---
 <!-- _color: "rgb(31,56,94)" -->
 <!-- _header: ![center width:150px](../img/ie_logo.png) -->
